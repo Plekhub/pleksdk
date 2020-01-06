@@ -68,21 +68,23 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
                 $return[$budget]->setPrize($prize);
                 
                 $installmentPlans = [];
-                foreach($budgetData->installmentPlans as $installmentPlan){
-                    $installmentPlanEntity = new \Plekhub\Pleksdk\Entities\InstallmentPlansEntity();
-                    $installmentPlanEntity->setChargeValue($installmentPlan->chargeValue);
-                    $installmentPlanEntity->setId($installmentPlan->id);
-                    $installmentPlanEntity->setDescription($installmentPlan->description);
-                    $installmentPlanEntity->setFirstInstallmentValue($installmentPlan->firstInstallmentValue);
-                    $installmentPlanEntity->setInstallmentQuantity($installmentPlan->installmentQuantity);
-                    $installmentPlanEntity->setInterestTax($installmentPlan->interestTax);
-                    $installmentPlanEntity->setInterestValue($installmentPlan->interestValue);
-                    $installmentPlanEntity->setIofValue($installmentPlan->iofValue);
-                    $installmentPlanEntity->setPaymentType($installmentPlan->paymentType);
-                    $installmentPlanEntity->setPolicyValue($installmentPlan->policyValue);
-                    $installmentPlanEntity->setRemainingInstallmentsValue($installmentPlan->remainingInstallmentsValue);
-                    $installmentPlanEntity->setTotalValue($installmentPlan->totalValue);
-                    $installmentPlans[] = $installmentPlanEntity;
+                if(isset($budgetData->installmentPlans) && $budgetData->installmentPlans){
+                    foreach($budgetData->installmentPlans as $installmentPlan){
+                        $installmentPlanEntity = new \Plekhub\Pleksdk\Entities\InstallmentPlansEntity();
+                        $installmentPlanEntity->setChargeValue($installmentPlan->chargeValue);
+                        $installmentPlanEntity->setId($installmentPlan->id);
+                        $installmentPlanEntity->setDescription($installmentPlan->description);
+                        $installmentPlanEntity->setFirstInstallmentValue($installmentPlan->firstInstallmentValue);
+                        $installmentPlanEntity->setInstallmentQuantity($installmentPlan->installmentQuantity);
+                        $installmentPlanEntity->setInterestTax($installmentPlan->interestTax);
+                        $installmentPlanEntity->setInterestValue($installmentPlan->interestValue);
+                        $installmentPlanEntity->setIofValue($installmentPlan->iofValue);
+                        $installmentPlanEntity->setPaymentType($installmentPlan->paymentType);
+                        $installmentPlanEntity->setPolicyValue($installmentPlan->policyValue);
+                        $installmentPlanEntity->setRemainingInstallmentsValue($installmentPlan->remainingInstallmentsValue);
+                        $installmentPlanEntity->setTotalValue($installmentPlan->totalValue);
+                        $installmentPlans[] = $installmentPlanEntity;
+                    }
                 }
                 $return[$budget]->setInstallmentPlans($installmentPlans);
             }
@@ -94,27 +96,15 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
         
     }
 
-    private function createBody() {
+    private function createBody() 
+    {
         $bodyArray = [];
-        $bodyArray["Renter"] = [];
+        $bodyArray["Renters"] = [];
         foreach ($this->renters as $renter) {
-            $bodyArray["Renter"][] = $renter->toArray();
+            $bodyArray["Renters"][] = $renter->toArray();
         }
         $bodyArray["Property"] = $this->propety->toArray();
-
-        $queryString = http_build_query($bodyArray);
-        $queryStringArray = explode("&", $queryString);
-        $body = "{";
-        foreach ($queryStringArray as $data) {
-            if (!$data) {
-                continue;
-            }
-            $dataToJson = explode("=", $data);
-            $body .= '"' . $dataToJson[0] . '": "' . $dataToJson[1] . '",';
-        }
-        $body = rtrim($body, ",");
-        $body = $body . "}";
-        return $body;
+        return json_encode($bodyArray);
     }
 
 }
