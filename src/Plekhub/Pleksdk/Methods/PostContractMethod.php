@@ -48,19 +48,7 @@ class PostContractMethod extends AMethod {
 
         $bodyArray["Landlord"] = $this->landLord->toArray();
 
-        $queryString = http_build_query($bodyArray);
-        $queryStringArray = explode("&", $queryString);
-        $body = "{";
-        foreach ($queryStringArray as $data) {
-            if (!$data) {
-                continue;
-            }
-            $dataToJson = explode("=", $data);
-            $body .= '"' . $dataToJson[0] . '": "' . $dataToJson[1] . '",';
-        }
-        $body = rtrim($body, ",");
-        $body = $body . "}";
-        return $body;
+        return json_encode($bodyArray);
     }
 
     public function execute() {
