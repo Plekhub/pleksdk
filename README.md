@@ -35,13 +35,14 @@ array(7) {
     string(8) "Amasiado"
   }
 }
-
+</pre>
 # Tipos de Pessoa/Listar todos os Tipos de Pessoa
 $personType = Plekhub\Pleksdk\Plekhub::getPersonTypeMethod($autenticacao);
 
 $teste = $personType->execute();
 
 # Tipos de Pessoa/Listar todos os Tipos de Pessoa - resposta
+<pre>
 array(2) {
   [0]=>
   object(Plekhub\Pleksdk\Entities\BasicEntity)#9 (2) {
@@ -61,7 +62,7 @@ array(2) {
 </pre>
 
 # Seguro Fiança com Identificador/Calcular Seguro Fiança com Identificador
-
+<pre>
 $postInsuranceGuaranteeWithIdentifierMethod = Plekhub\Pleksdk\Plekhub::postInsuranceGuaranteeWithIdentifierMethod($autenticacao);<br>
 $postInsuranceGuaranteeWithIdentifierMethod->propety()<br>
         ->setAddress("Rua falsa 123")<br>
@@ -102,9 +103,9 @@ $postInsuranceGuaranteeWithIdentifierMethod->addRenter()<br>
         ->setCompanyName("plek")<br>
         ->setResidentCountry("Brasil");<br>
 $teste = $postInsuranceGuaranteeWithIdentifierMethod->execute();<br>
-
+</pre>
 # Seguro Fiança com Identificador/Calcular Seguro Fiança com Identificador - resposta
-
+<pre>
 array(1) {<br>
   ["PortoSeguro"]=><br>
   object(Plekhub\Pleksdk\Entities\BudgetsEntity)#14 (5) {<br>
@@ -172,9 +173,9 @@ array(1) {<br>
     }<br>
   }<br>
 }<br>
-
+</pre>
 # Contratar/Realizar Contratação
-
+<pre>
 $postContractMethod = Plekhub\Pleksdk\Plekhub::postContractMethod($autenticacao);<br>
 $postContractMethod->setBudget(1);<br>
 $postContractMethod->setChoosenPlan(0);<br>
@@ -198,7 +199,7 @@ $postContractMethod->landLord()<br>
         ->setResidentCountry("Brasil")<br>
         ->setStreetTypeId(1);<br>
 $teste = $postContractMethod->execute();<br>
-
+</pre>
 # Contratar/Realizar Contratação - resposta
 bool(true)
 
