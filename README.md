@@ -11,52 +11,54 @@ $getMartial = Plekhub\Pleksdk\Plekhub::getMaritalStatusMethod($autenticacao);
 $teste = $getMartial->execute();
 
 # Estados Civis / Listar todos os Estados Civis - resposta
-array(7) { <br>
-  [0]=><br>
-  object(Plekhub\Pleksdk\Entities\BasicEntity)#14 (2) {<br>
-    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    int(1)<br>
-    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    string(8) "Solteiro"<br>
-  }<br>
-  [1]=><br>
-  object(Plekhub\Pleksdk\Entities\BasicEntity)#15 (2) {<br>
-    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    int(2)<br>
-    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    string(6) "Casado"<br>
-  }<br>
-  [2]=><br>
-  object(Plekhub\Pleksdk\Entities\BasicEntity)#16 (2) {<br>
-    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    int(3)<br>
-    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    string(8) "Amasiado"<br>
-  }<br>
-}<br>
+<pre>
+array(7) { 
+  [0]=>
+  object(Plekhub\Pleksdk\Entities\BasicEntity)#14 (2) {
+    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    int(1)
+    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    string(8) "Solteiro"
+  }
+  [1]=>
+  object(Plekhub\Pleksdk\Entities\BasicEntity)#15 (2) {
+    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    int(2)
+    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    string(6) "Casado"
+  }
+  [2]=>
+  object(Plekhub\Pleksdk\Entities\BasicEntity)#16 (2) {
+    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    int(3)
+    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    string(8) "Amasiado"
+  }
+}
 
 # Tipos de Pessoa/Listar todos os Tipos de Pessoa
-$personType = Plekhub\Pleksdk\Plekhub::getPersonTypeMethod($autenticacao);<br>
+$personType = Plekhub\Pleksdk\Plekhub::getPersonTypeMethod($autenticacao);
 
-$teste = $personType->execute();<br>
+$teste = $personType->execute();
 
 # Tipos de Pessoa/Listar todos os Tipos de Pessoa - resposta
-array(2) {<br>
-  [0]=><br>
-  object(Plekhub\Pleksdk\Entities\BasicEntity)#9 (2) {<br>
-    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    int(1)<br>
-    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    string(7) "Física"<br>
-  }<br>
-  [1]=><br>
-  object(Plekhub\Pleksdk\Entities\BasicEntity)#10 (2) {<br>
-    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    int(2)<br>
-    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=><br>
-    string(9) "Jurídica"<br>
-  }<br>
-}<br>
+array(2) {
+  [0]=>
+  object(Plekhub\Pleksdk\Entities\BasicEntity)#9 (2) {
+    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    int(1)
+    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    string(7) "Física"
+  }
+  [1]=>
+  object(Plekhub\Pleksdk\Entities\BasicEntity)#10 (2) {
+    ["id":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    int(2)
+    ["name":"Plekhub\Pleksdk\Entities\BasicEntity":private]=>
+    string(9) "Jurídica"
+  }
+}
+</pre>
 
 # Seguro Fiança com Identificador/Calcular Seguro Fiança com Identificador
 
