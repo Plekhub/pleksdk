@@ -19,17 +19,17 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
     private $renters = [];
     private $propety;
 
-    public function addRenter(\Plekhub\Pleksdk\Entities\RenterWithIdentifierEntity $renter = null) {
+    public function addRenter(\Plekhub\Pleksdk\Entities\RenterEntity $renter = null) {
         if ($renter === null) {
-            $renter = new \Plekhub\Pleksdk\Entities\RenterWithIdentifierEntity();
+            $renter = new \Plekhub\Pleksdk\Entities\RenterEntity();
         }
         $this->renters[] = $renter;
         return $renter;
     }
 
-    public function propety(\Plekhub\Pleksdk\Entities\PropetyWithIdentifierEntity $propety = null) {
+    public function propety(\Plekhub\Pleksdk\Entities\PropetyEntity $propety = null) {
         if ($propety === null) {
-            $propety = new \Plekhub\Pleksdk\Entities\PropetyWithIdentifierEntity();
+            $propety = new \Plekhub\Pleksdk\Entities\PropetyEntity();
         }
         $this->propety = $propety;
         return $propety;
@@ -64,12 +64,12 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
                 $prize->setPolicyCost($budgetData->prize->policyCost);
                 $prize->setIofValue($budgetData->prize->iofValue);
                 $prize->setTotal($budgetData->prize->total);
-                
+
                 $return[$budget]->setPrize($prize);
-                
+
                 $installmentPlans = [];
-                if(isset($budgetData->installmentPlans) && $budgetData->installmentPlans){
-                    foreach($budgetData->installmentPlans as $installmentPlan){
+                if (isset($budgetData->installmentPlans) && $budgetData->installmentPlans) {
+                    foreach ($budgetData->installmentPlans as $installmentPlan) {
                         $installmentPlanEntity = new \Plekhub\Pleksdk\Entities\InstallmentPlansEntity();
                         $installmentPlanEntity->setChargeValue($installmentPlan->chargeValue);
                         $installmentPlanEntity->setId($installmentPlan->id);
@@ -89,15 +89,12 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
                 $return[$budget]->setInstallmentPlans($installmentPlans);
             }
             return $return;
-           
         }
         $erroJson = json_encode($objectResponse->data);
-        throw new \Plekhub\Pleksdk\Exceptions\ValidationException($objectResponse->message." -> ".$erroJson, 0,null,(array) $objectResponse->data->errors);
-        
+        throw new \Plekhub\Pleksdk\Exceptions\ValidationException($objectResponse->message . " -> " . $erroJson, 0, null, (array) $objectResponse->data->errors);
     }
 
-    private function createBody() 
-    {
+    private function createBody() {
         $bodyArray = [];
         $bodyArray["Renters"] = [];
         foreach ($this->renters as $renter) {
