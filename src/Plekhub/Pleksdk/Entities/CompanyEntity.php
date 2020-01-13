@@ -46,5 +46,15 @@ class CompanyEntity {
         $this->phone = $phone;
         return $phone;
     }
+    public function toArray(){
+        $return = [
+            "name" => $this->name,
+            "contact_name" => $this->contactName
+        ];
+        if($this->phone){
+            $return["phone"] = $this->phone->toArray();
+        }
+        return $return;
+    }
 
 }
