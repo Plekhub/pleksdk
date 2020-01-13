@@ -17,59 +17,28 @@ class LandlordEntity {
 
     private $name;
     private $phone;
-    private $streetTypeId;
-    private $neighborhood;
     private $address;
-    private $cep;
+    private $company;
     private $email;
-    private $city;
-    private $addressNumber;
-    private $addressComplement;
     private $personTypeId;
     private $publicPerson;
-    private $residentCountry;
-    private $profession;
     private $cpf;
-    private $birthday;
+    private $birthDate;
+    private $professional;
+    private $category;
+    private $economicActivity;
+    private $cnpj;
+
+    function getCompany() {
+        return $this->company;
+    }
 
     function getName() {
         return $this->name;
     }
 
-    function getPhone() {
-        return $this->phone;
-    }
-
-    function getStreetTypeId() {
-        return $this->streetTypeId;
-    }
-
-    function getNeighborhood() {
-        return $this->neighborhood;
-    }
-
-    function getAddress() {
-        return $this->address;
-    }
-
-    function getCep() {
-        return $this->cep;
-    }
-
     function getEmail() {
         return $this->email;
-    }
-
-    function getCity() {
-        return $this->city;
-    }
-
-    function getAddressNumber() {
-        return $this->addressNumber;
-    }
-
-    function getAddressComplement() {
-        return $this->addressComplement;
     }
 
     function getPersonTypeId() {
@@ -80,119 +49,126 @@ class LandlordEntity {
         return $this->publicPerson;
     }
 
-    function getResidentCountry() {
-        return $this->residentCountry;
-    }
-
-    function getProfession() {
-        return $this->profession;
-    }
-
     function getCpf() {
         return $this->cpf;
     }
 
-    function getBirthday() {
-        return $this->birthday;
+    function getBirthDate() {
+        return $this->birthDate;
+    }
+
+    function getCategory() {
+        return $this->category;
+    }
+
+
+
+    function getCnpj() {
+        return $this->cnpj;
     }
 
     function setName($name) {
         $this->name = $name;
-        return $this;
-    }
-
-    function setPhone($phone) {
-        $this->phone = $phone;
-        return $this;
-    }
-
-    function setStreetTypeId($streetTypeId) {
-        $this->streetTypeId = $streetTypeId;
-        return $this;
-    }
-
-    function setNeighborhood($neighborhood) {
-        $this->neighborhood = $neighborhood;
-        return $this;
-    }
-
-    function setAddress($address) {
-        $this->address = $address;
-        return $this;
-    }
-
-    function setCep($cep) {
-        $this->cep = $cep;
-        return $this;
     }
 
     function setEmail($email) {
         $this->email = $email;
-        return $this;
-    }
-
-    function setCity($city) {
-        $this->city = $city;
-        return $this;
-    }
-
-    function setAddressNumber($addressNumber) {
-        $this->addressNumber = $addressNumber;
-        return $this;
-    }
-
-    function setAddressComplement($addressComplement) {
-        $this->addressComplement = $addressComplement;
-        return $this;
     }
 
     function setPersonTypeId($personTypeId) {
         $this->personTypeId = $personTypeId;
-        return $this;
     }
 
     function setPublicPerson($publicPerson) {
         $this->publicPerson = $publicPerson;
-        return $this;
-    }
-
-    function setResidentCountry($residentCountry) {
-        $this->residentCountry = $residentCountry;
-        return $this;
-    }
-
-    function setProfession($profession) {
-        $this->profession = $profession;
-        return $this;
     }
 
     function setCpf($cpf) {
         $this->cpf = $cpf;
-        return $this;
     }
 
-    function setBirthday($birthday) {
-        $this->birthday = $birthday;
-        return $this;
+    function setBirthDate($birthDate) {
+        $this->birthDate = $birthDate;
+    }
+
+    function setCategory($category) {
+        $this->category = $category;
+    }
+
+
+    function setCnpj($cnpj) {
+        $this->cnpj = $cnpj;
+    }
+
+    function getPhone() {
+        return $this->phone;
+    }
+
+    function getAddress() {
+        return $this->address;
+    }
+
+    function getProfessional() {
+        return $this->professional;
+    }
+
+    public function setPhone(PhoneEntity $phone = null) {
+        if ($phone === null) {
+            $phone = new PhoneEntity();
+        }
+        $this->phone = $phone;
+        return $phone;
+    }
+
+    public function setCompany(CompanyEntity $company = null) {
+        if ($company === null) {
+            $company = new CompanyEntity();
+        }
+        $this->company = $company;
+        return $company;
+    }
+
+    public function setAddress(AddressEntity $address = null) {
+        if ($address === null) {
+            $address = new ddressEntity();
+        }
+        $this->address = $address;
+        return $address;
+    }
+
+    public function setProfessional(ProfessionalEntity $professional = null) {
+        if ($professional === null) {
+            $professional = new ProfessionalEntity();
+        }
+        $this->professional = $professional;
+        return $professional;
     }
 
     public function toArray() {
-        return ["name" => $this->name,
-            "phone" => $this->phone,
-            "street_type_id" => $this->streetTypeId,
-            "neighborhood" => $this->neighborhood,
-            "address" => $this->address,
-            "cep" => $this->cep,
+        $return = [
+            "name" => $this->name,
             "email" => $this->email,
-            "city" => $this->city,
-            "address_number" => $this->addressNumber,
-            "address_complement" => $this->addressComplement,
             "person_type_id" => $this->personTypeId,
             "public_person" => $this->publicPerson,
-            "resident_country" => $this->residentCountry,
-            "profession" => $this->profession,
             "cpf" => $this->cpf,
-            "birthday" => $this->birthday];
+            "birth_date" => $this->birthDate,
+            "category" => $this->category,
+            "economic_activity"=> $this->economicActivity,
+            "cnpj"=> $this->cnpj
+        ];
+        if ($this->company) {
+            $return['company'] = $this->company->toArray();
+        }
+        if ($this->address) {
+            $return['address'] = $this->address->toArray();
+        }
+        if ($this->professional) {
+            $return['professional'] = $this->professional->toArray();
+        }
+        if ($this->phone) {
+            $return['phone'] = $this->phone->toArray();
+        }
+        return $return;
     }
 
 }
