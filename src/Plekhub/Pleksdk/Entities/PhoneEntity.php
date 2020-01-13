@@ -35,5 +35,11 @@ class PhoneEntity {
         $this->number = $number;
         return $this;
     }
+    public function toArray(){
+        return [
+            "ddd"=> $this->ddd,
+            "number"=> $this->number
+        ];
+    }
 
 }

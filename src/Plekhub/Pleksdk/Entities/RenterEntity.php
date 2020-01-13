@@ -90,9 +90,6 @@ class RenterEntity {
         $this->emanciped = $emanciped;
     }
 
-    function setCellphone($cellphone) {
-        $this->cellphone = $cellphone;
-    }
 
     function setEmail($email) {
         $this->email = $email;
@@ -118,7 +115,7 @@ class RenterEntity {
         return $phone;
     }
 
-    public function setCelhone(PhoneEntity $phone = null) {
+    public function setCellphone(PhoneEntity $phone = null) {
         if ($phone === null) {
             $phone = new PhoneEntity();
         }
