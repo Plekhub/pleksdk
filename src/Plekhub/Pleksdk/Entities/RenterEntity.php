@@ -173,6 +173,7 @@ class RenterEntity {
         if ($this->currentAddress) {
             $retorno['current_address'] = $this->currentAddress->toArray();
         }
+        return $retorno;
     }
 
 }
