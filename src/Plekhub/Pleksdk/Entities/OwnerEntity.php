@@ -31,5 +31,12 @@ class OwnerEntity {
     function setName($name) {
         $this->name = $name;
     }
+    public function toArray(){
+        $return = ["name"=> $this->name];
+        if($this->telephone){
+            $return["telephone"] = $this->telephone->toArray();
+        }
+        return $return;
+    }
 
 }
