@@ -130,7 +130,7 @@ class LandlordEntity {
 
     public function setAddress(AddressEntity $address = null) {
         if ($address === null) {
-            $address = new ddressEntity();
+            $address = new AddressEntity();
         }
         $this->address = $address;
         return $address;
