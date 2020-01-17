@@ -20,6 +20,7 @@ class BudgetsEntity {
     private $coverage;
     private $prize;
     private $installmentPlans;
+    private $erros;
     
     function getInsuranceCompany() {
         return $this->insuranceCompany;
@@ -69,6 +70,14 @@ class BudgetsEntity {
     function setInstallmentPlans(array $installmentPlans) {
         $this->installmentPlans = $installmentPlans;
     }
+    function getErros() {
+        return $this->erros;
+    }
+
+    function setErros($erros) {
+        $this->erros = $erros;
+    }
+
 
 
 

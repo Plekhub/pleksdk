@@ -47,7 +47,9 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
                 $return[$budget] = new \Plekhub\Pleksdk\Entities\BudgetsEntity();
                 $return[$budget]->setId($budgetData->id);
                 $return[$budget]->setInsuranceCompany($budgetData->insuranceCompany);
-
+                if(isset($budgetData->errors)){
+                    $return[$budget]->setErros($budgetData->errors);
+                }
                 $coverage = new \Plekhub\Pleksdk\Entities\CoverageEntity();
                 $coverage->setRent($budgetData->coverage->rent);
                 $coverage->setCondominium($budgetData->coverage->condominium);
