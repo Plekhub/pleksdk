@@ -20,6 +20,7 @@ class PostContractMethod extends AMethod {
     private $insuranceCompany;
     private $choosenPlan;
     private $landLord;
+    private $vigencyStart;
 
     public function setBudget($budget) {
         $this->budget = $budget;
@@ -36,13 +37,19 @@ class PostContractMethod extends AMethod {
         return $this;
     }
 
-    public function landLord(\Plekhub\Pleksdk\Entities\LandlordEntity $landLord = null){
-        if($landLord === null){
+    public function setVigencyStart($vigencyStart) {
+        $this->vigencyStart = $vigencyStar;
+        return $this;
+    }
+
+    public function landLord(\Plekhub\Pleksdk\Entities\LandlordEntity $landLord = null) {
+        if ($landLord === null) {
             $landLord = new \Plekhub\Pleksdk\Entities\LandlordEntity();
         }
         $this->landLord = $landLord;
         return $landLord;
     }
+
     private function createBody() {
         $bodyArray = [];
 
@@ -54,15 +61,14 @@ class PostContractMethod extends AMethod {
     public function execute() {
         $this->requisition->setEndpoint($this->endpoint);
         $this->requisition->setBody($this->createBody());
-        $this->requisition->setQuery(["budget"=> $this->budget,"insurance_company"=> $this->insuranceCompany,"choosen_plan"=> $this->choosenPlan]);
+        $this->requisition->setQuery(["budget" => $this->budget, "insurance_company" => $this->insuranceCompany, "choosen_plan" => $this->choosenPlan, 'vigencyStart' => $this->vigencyStart]);
         $response = $this->requisition->request();
         $response = str_replace("-", "_", $response);
         $objectResponse = json_decode($response);
-        if($objectResponse && $objectResponse->status =="success"){
+        if ($objectResponse && $objectResponse->status == "success") {
             return true;
         }
         throw new \Plekhub\Pleksdk\Exceptions\ValidationException($objectResponse->message);
-        
     }
 
 }
