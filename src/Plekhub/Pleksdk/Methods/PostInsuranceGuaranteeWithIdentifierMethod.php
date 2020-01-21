@@ -17,6 +17,7 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
 
     protected $endpoint = "insurance-guarantee/with-identifier";
     private $renters = [];
+    private $companies = [];
     private $propety;
 
     public function addRenter(\Plekhub\Pleksdk\Entities\RenterEntity $renter = null) {
@@ -35,9 +36,15 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
         return $propety;
     }
 
+    public function addCompany($company) {
+        $this->companies[] = $company;
+        return $this;
+    }
+
     public function execute() {
         $this->requisition->setEndpoint($this->endpoint);
         $this->requisition->setBody($this->createBody());
+        $this->requisition->setQuery(['companies' => $this->companies]);
         $response = $this->requisition->request();
         $objectResponse = json_decode($response);
         if ($objectResponse && $objectResponse->status == "success") {
@@ -46,13 +53,13 @@ class PostInsuranceGuaranteeWithIdentifierMethod extends AMethod {
             foreach ($data as $budget => $budgetData) {
                 $return[$budget] = new \Plekhub\Pleksdk\Entities\BudgetsEntity();
                 $return[$budget]->setInsuranceCompany($budgetData->insuranceCompany);
-                
-                if(isset($budgetData->errors)){
+
+                if (isset($budgetData->errors)) {
                     $return[$budget]->setErros($budgetData->errors);
                     continue;
                 }
                 $return[$budget]->setId($budgetData->id);
-                
+
                 $coverage = new \Plekhub\Pleksdk\Entities\CoverageEntity();
                 $coverage->setRent($budgetData->coverage->rent);
                 $coverage->setCondominium($budgetData->coverage->condominium);
