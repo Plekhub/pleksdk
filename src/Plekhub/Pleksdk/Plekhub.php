@@ -41,6 +41,9 @@ class Plekhub {
     public static function getReadjustmentIndexMethod(Authentication\IAuthentication $authentication){
         return new Methods\GetReadjustmentIndexMethod(self::getRequisition(), $authentication);
     }
+    public static function getInsuranceCompanyMethod(Authentication\IAuthentication $authentication){
+        return new Methods\GetInsuranceCompanyMethod(self::getRequisition(), $authentication);
+    }
     public static function getRealEstateMethod(Authentication\IAuthentication $authentication){
         return new Methods\GetRealEstateMethod(self::getRequisition(), $authentication);
     }
