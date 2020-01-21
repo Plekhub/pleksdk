@@ -25,7 +25,7 @@ class GetInsuranceCompanyMethod extends AMethod{
         $response = str_replace("-", "_", $response);
         $objectResponse = json_decode($response);
         if($objectResponse && $objectResponse->status == "success"){
-            $data = $objectResponse->data->marital_status;
+            $data = $objectResponse->data->insurance_company;
             $return = [];
             foreach($data as $maritalStatus){
                 $basicEntity = new \Plekhub\Pleksdk\Entities\BasicEntity();
