@@ -61,7 +61,7 @@ class PostContractMethod extends AMethod {
     public function execute() {
         $this->requisition->setEndpoint($this->endpoint);
         $this->requisition->setBody($this->createBody());
-        $this->requisition->setQuery(["budget" => $this->budget, "insurance_company" => $this->insuranceCompany, "choosen_plan" => $this->choosenPlan, 'vigencyStart' => $this->vigencyStart]);
+        $this->requisition->setQuery(["budget" => $this->budget, "insurance_company" => $this->insuranceCompany, "choosen_plan" => $this->choosenPlan, 'vigency_start' => $this->vigencyStart]);
         $response = $this->requisition->request();
         $response = str_replace("-", "_", $response);
         $objectResponse = json_decode($response);
