@@ -38,7 +38,7 @@ class PostContractMethod extends AMethod {
     }
 
     public function setVigencyStart($vigencyStart) {
-        $this->vigencyStart = $vigencyStar;
+        $this->vigencyStart = $vigencyStart;
         return $this;
     }
 
