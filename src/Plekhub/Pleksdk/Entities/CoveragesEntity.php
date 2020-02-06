@@ -54,10 +54,10 @@ class CoveragesEntity {
 
     function toArray() {
         return [
-            "inner_painting",
-            "outer_painting",
-            "property_damage",
-            "contract_termination_fee",
+            "inner_painting"=> $this->innerPainting,
+            "outer_painting"=> $this->outerPainting,
+            "property_damage"=> $this->propertyDamage,
+            "contract_termination_fee"=>$this->contractTerminationFee,
         ];
     }
 
