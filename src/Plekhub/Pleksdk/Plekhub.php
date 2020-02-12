@@ -62,4 +62,7 @@ class Plekhub {
     public static function postInsuranceGuaranteeWithoutIdentifierMethod(Authentication\IAuthentication $authentication){
         return new Methods\PostInsuranceGuaranteeWithoutIdentifierMethod(self::getRequisition(), $authentication);
     }
+    public static function getBudgetMethod(Authentication\IAuthentication $authentication){
+        return new Methods\GetBudgetMethod(self::getRequisition(), $authentication);
+    }
 }
